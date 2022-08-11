@@ -1,32 +1,23 @@
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
-
-// import * as phonebookActions from '../../redux/phonebookActions';
-import { itemsSlice } from 'redux/phonebookSlice';
-
-import { getVisibleContacts } from 'redux/phonebookSelectors';
-import { Contacts, Contact, DeleteButton, Tel } from './ContactList.styled';
+import { useFetchContactsQuery } from '../../redux/phonebookSlice';
+// import { getVisibleContacts } from 'redux/phonebookSelectors';
+import { Contacts } from './ContactList.styled';
+import { ContactItem } from './ContactItem';
+import  ClipLoader from 'react-spinners/ClipLoader';
 
 
 
 export const ContactList = () => {
-    const contacts = useSelector(getVisibleContacts);
-    const dispatch = useDispatch();
-
-    return (
+    const { data: contacts, isFetching } = useFetchContactsQuery();
+    if (contacts) {
+       return (
         <Contacts>
-            {contacts.map(({ id, name, number }) => { 
-                
-                return (
-                        <Contact key={id}>{name}: <Tel>{number}</Tel>
-                            <DeleteButton id={id} type="button" onClick={(evt) => dispatch(itemsSlice.actions.deleteContact(evt.target.id))}>Delete</DeleteButton>
-                                {/* // onClick={(evt) => dispatch(phonebookActions.deleteContact(evt.target.id))} */}
-                        </Contact>
-                )
-            }
-            )}
+               <ClipLoader loading={isFetching} size={50} />
+               {contacts.map(({ name, phone, id }) => <ContactItem key={id} id={id} name={name} phone={phone} />) }
         </Contacts>
-    );
+    ); 
+    }
+    
 }
 
 ContactList.propTypes = {

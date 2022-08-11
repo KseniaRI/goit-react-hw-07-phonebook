@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import  ClipLoader from 'react-spinners/ClipLoader';
+
 
 export const Contacts = styled.ul`
 margin: 0 auto;
@@ -16,7 +18,7 @@ font-weight: ${p => p.theme.fontWeights.bold};
 `;
 export const DeleteButton = styled.button`
 height: ${p => p.theme.space[5]}px;
-width: ${p => p.theme.space[6]}px;
+width: ${p => p.theme.space[7]}px;
 background-color: ${p => p.theme.colors.white};
 cursor: pointer;
 outline: none;
@@ -37,3 +39,6 @@ color: ${p => p.theme.colors.black};
 export const Tel = styled.span`
 font-weight: ${p => p.theme.fontWeights.normal};
 `;
+export const StyledClipLoader = styled(ClipLoader)`
+margin-right: ${p => p.theme.space[3]}px;
+`

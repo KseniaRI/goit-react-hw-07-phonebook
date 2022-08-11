@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Form } from 'formik';
+import  ClipLoader from 'react-spinners/ClipLoader';
 
 export const StyledField = styled.input`
 width: ${p => p.theme.space[8]}px;
@@ -66,4 +67,8 @@ font-weight: ${p => p.theme.fontWeights.bold};
 export const ErrorMessage = styled.div`
 color: ${p => p.theme.colors.error};
 font-style: italic;
+`
+
+export const StyledClipLoader = styled(ClipLoader)`
+margin-right: ${p => p.theme.space[3]}px;
 `
