@@ -71,4 +71,5 @@ font-style: italic;
 
 export const StyledClipLoader = styled(ClipLoader)`
 margin-right: ${p => p.theme.space[3]}px;
+color:  ${p => p.theme.colors.accent};
 `

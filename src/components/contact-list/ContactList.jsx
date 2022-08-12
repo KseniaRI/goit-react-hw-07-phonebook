@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import { useFetchContactsQuery } from '../../redux/phonebookSlice';
-import { Contacts } from './ContactList.styled';
+import { Contacts, ListClipLoader } from './ContactList.styled';
 import { ContactItem } from './ContactItem';
-import ClipLoader from 'react-spinners/ClipLoader';
 import { useSelector} from 'react-redux';
 import { getFilter } from 'redux/phonebookSelectors';
 
@@ -22,7 +21,7 @@ export const ContactList = () => {
     }
        return (
         <Contacts>
-               <ClipLoader loading={isFetching} size={50} />
+               <ListClipLoader loading={isFetching} size={50} />
                {visibleContacts && visibleContacts.map(({ name, phone, id }) => <ContactItem key={id} id={id} name={name} phone={phone} />) }
         </Contacts>
     ); 

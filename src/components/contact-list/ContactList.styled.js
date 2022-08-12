@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
-import  ClipLoader from 'react-spinners/ClipLoader';
+import ClipLoader from 'react-spinners/ClipLoader';
+
 
 
 export const Contacts = styled.ul`
 margin: 0 auto;
 align-items: center;
 width: ${p => p.theme.space[9]}px;
+position: relative;
 `;
 
 export const Contact = styled.li`
@@ -41,4 +43,11 @@ font-weight: ${p => p.theme.fontWeights.normal};
 `;
 export const StyledClipLoader = styled(ClipLoader)`
 margin-right: ${p => p.theme.space[3]}px;
-`
+color:  ${p => p.theme.colors.accent};
+`;
+export const ListClipLoader = styled(ClipLoader)`
+position: absolute;
+color:  ${p => p.theme.colors.accent};
+top: 50%;
+left: 50%;
+`;
