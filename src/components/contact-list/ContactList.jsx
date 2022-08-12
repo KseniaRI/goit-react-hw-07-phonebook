@@ -1,23 +1,31 @@
 import PropTypes from 'prop-types';
 import { useFetchContactsQuery } from '../../redux/phonebookSlice';
-// import { getVisibleContacts } from 'redux/phonebookSelectors';
 import { Contacts } from './ContactList.styled';
 import { ContactItem } from './ContactItem';
-import  ClipLoader from 'react-spinners/ClipLoader';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { useSelector} from 'react-redux';
+import { getFilter } from 'redux/phonebookSelectors';
 
 
 
 export const ContactList = () => {
+
+    const getVisibleContacts = (value, contacts) => {
+        return contacts.filter(contact => contact.name.toLowerCase().includes(value.toLowerCase()));  
+    }
+
     const { data: contacts, isFetching } = useFetchContactsQuery();
+    const value = useSelector(getFilter);
+    let visibleContacts = null;
     if (contacts) {
+        visibleContacts = getVisibleContacts(value, contacts);
+    }
        return (
         <Contacts>
                <ClipLoader loading={isFetching} size={50} />
-               {contacts.map(({ name, phone, id }) => <ContactItem key={id} id={id} name={name} phone={phone} />) }
+               {visibleContacts && visibleContacts.map(({ name, phone, id }) => <ContactItem key={id} id={id} name={name} phone={phone} />) }
         </Contacts>
     ); 
-    }
-    
 }
 
 ContactList.propTypes = {
